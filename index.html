@@ -1,0 +1,717 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5f3ee">
+<title>HAPPY HRS — Independent Streetwear</title>
+<style>
+:root {
+  --bg: #f5f3ee;
+  --ink: #171715;
+  --muted: #77766f;
+  --line: #dedbd3;
+  --white: #fffefa;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+}
+button { font: inherit; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+.topbar {
+  background: var(--ink);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+header {
+  height: 78px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+.logo {
+  font-size: 25px;
+  font-weight: 950;
+  letter-spacing: -2px;
+}
+.logo span { font-weight: 300; }
+.nav {
+  display: flex;
+  gap: 30px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.nav a:hover { opacity: .5; }
+.cart-button {
+  background: none;
+  border: 1px solid var(--ink);
+  padding: 11px 15px;
+  font-size: 11px;
+  font-weight: bold;
+}
+.hero {
+  padding: 70px 5% 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 35px;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+.hero h1 {
+  font-size: clamp(65px, 10vw, 145px);
+  line-height: .78;
+  letter-spacing: -10px;
+  margin: 35px 0 25px;
+  font-weight: 950;
+}
+.hero h1 span {
+  display: block;
+  font-weight: 300;
+  letter-spacing: -7px;
+}
+.hero p {
+  color: var(--muted);
+  max-width: 330px;
+  line-height: 1.7;
+  font-size: 13px;
+}
+.primary-button {
+  display: inline-block;
+  background: var(--ink);
+  color: white;
+  padding: 17px 25px;
+  border: 1px solid var(--ink);
+  margin-top: 28px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  transition: .2s;
+}
+.primary-button:hover {
+  background: transparent;
+  color: var(--ink);
+}
+.hero-art {
+  min-height: 430px;
+  background: #e4e0d7;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-art:before {
+  content: "HAPPY";
+  position: absolute;
+  font-weight: 950;
+  font-size: clamp(75px, 12vw, 160px);
+  letter-spacing: -12px;
+  color: rgba(0,0,0,.055);
+  transform: rotate(-90deg);
+}
+.shirt {
+  width: 240px;
+  height: 275px;
+  background: #191919;
+  position: relative;
+  clip-path: polygon(20% 0, 37% 8%, 63% 8%, 80% 0, 100% 20%, 84% 43%, 76% 35%, 76% 100%, 24% 100%, 24% 35%, 16% 43%, 0 20%);
+  filter: drop-shadow(0 20px 20px #0003);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.shirt:before {
+  content: "HAPPY";
+  color: white;
+  font-size: 23px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  position: absolute;
+  top: 43%;
+}
+.shirt:after {
+  content: "☺";
+  color: white;
+  font-size: 33px;
+  position: absolute;
+  top: 54%;
+}
+.hero-tag {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  padding: 13px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+.marquee {
+  background: var(--ink);
+  color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 17px 0;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+.section {
+  padding: 85px 5%;
+}
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 35px;
+}
+.section-heading h2 {
+  font-size: clamp(35px, 5vw, 65px);
+  letter-spacing: -4px;
+}
+.section-heading p {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+}
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.product-image {
+  height: 370px;
+  position: relative;
+  background: #e6e3db;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.product-image.dark { background: #222; }
+.product-image.grey { background: #d0cec8; }
+.product-shirt {
+  width: 175px;
+  height: 215px;
+  background: #191919;
+  clip-path: polygon(20% 0, 37% 8%, 63% 8%, 80% 0, 100% 20%, 84% 43%, 76% 35%, 76% 100%, 24% 100%, 24% 35%, 16% 43%, 0 20%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 900;
+  font-size: 19px;
+  position: relative;
+  transition: transform .3s;
+}
+.product-image:hover .product-shirt { transform: scale(1.06) rotate(-2deg); }
+.product-shirt.white { background: #f7f6f1; color: #151515; }
+.product-shirt.grey-shirt { background: #777; }
+.product-shirt span {
+  position: absolute;
+  top: 48%;
+}
+.product-shirt span:after {
+  content: "☺";
+  display: block;
+  text-align: center;
+  font-size: 25px;
+}
+.product-label {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: var(--white);
+  padding: 8px 10px;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+.product-info {
+  padding: 17px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.product-info h3 { font-size: 14px; margin-bottom: 7px; }
+.product-info p { color: var(--muted); font-size: 11px; }
+.price { font-weight: bold; font-size: 13px; white-space: nowrap; }
+.add-button {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--ink);
+  padding: 13px;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.add-button:hover { background: var(--ink); color: white; }
+.about {
+  background: #e8e5dc;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+  padding: 75px 8%;
+}
+.about h2 {
+  font-size: clamp(45px, 7vw, 85px);
+  line-height: .9;
+  letter-spacing: -6px;
+}
+.about p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #55544e;
+  align-self: center;
+}
+.newsletter {
+  text-align: center;
+  padding: 85px 5%;
+}
+.newsletter h2 {
+  font-size: clamp(40px, 7vw, 75px);
+  letter-spacing: -5px;
+}
+.newsletter p {
+  margin: 15px 0 25px;
+  color: var(--muted);
+  font-size: 12px;
+}
+footer {
+  background: var(--ink);
+  color: white;
+  padding: 45px 5%;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+footer p { font-size: 10px; color: #aaa; margin-top: 12px; }
+footer a { font-size: 11px; }
+.footer-logo { font-size: 30px; font-weight: 950; letter-spacing: -2px; }
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #0008;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: .25s;
+}
+.overlay.open { opacity: 1; visibility: visible; }
+.cart {
+  position: fixed;
+  right: -440px;
+  top: 0;
+  height: 100%;
+  width: min(420px, 100%);
+  background: var(--bg);
+  z-index: 11;
+  padding: 25px;
+  transition: .3s;
+  overflow-y: auto;
+}
+.cart.open { right: 0; }
+.cart-head {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--line);
+}
+.close {
+  border: none;
+  background: none;
+  font-size: 25px;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  gap: 15px;
+  font-size: 12px;
+}
+.cart-item select {
+  margin-top: 9px;
+  padding: 7px;
+  background: white;
+  border: 1px solid var(--line);
+}
+.remove {
+  border: none;
+  background: none;
+  text-decoration: underline;
+  margin-top: 10px;
+  font-size: 10px;
+}
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding: 25px 0;
+}
+.checkout {
+  width: 100%;
+  background: var(--ink);
+  color: white;
+  border: 0;
+  padding: 17px;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+.empty {
+  text-align: center;
+  padding: 55px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+@media(max-width:750px) {
+  header { height: 65px; }
+  .nav { display: none; }
+  .logo { font-size: 22px; }
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 55px;
+  }
+  .hero h1 { letter-spacing: -6px; }
+  .hero-art { min-height: 350px; }
+  .products { grid-template-columns: 1fr 1fr; gap: 13px; }
+  .product-image { height: 240px; }
+  .product-shirt { transform: scale(.78); }
+  .product-image:hover .product-shirt { transform: scale(.83); }
+  .product-info { display: block; }
+  .price { display: block; margin-top: 8px; }
+  .section { padding: 60px 5%; }
+  .about { grid-template-columns: 1fr; padding: 60px 7%; }
+}
+@media(max-width:390px) {
+  .products { grid-template-columns: 1fr; }
+  .product-image { height: 330px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">HAPPY HRS — DROP 001 / INDEPENDENT STREETWEAR</div>
+
+<header>
+  <a href="#" class="logo">HAPPY HRS<span>.</span></a>
+  <nav class="nav">
+    <a href="#shop">SHOP</a>
+    <a href="#about">OUR STORY</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+  <button class="cart-button" onclick="openCart()">
+    BAG (<span id="cart-count">0</span>)
+  </button>
+</header>
+
+<main>
+<section class="hero">
+  <div>
+    <div class="eyebrow">NOT JUST ANOTHER T-SHIRT.</div>
+    <h1>HAPPY<span>HRS.</span></h1>
+    <p>
+      A different kind of everyday uniform.
+      Made for people who don't need to follow the crowd.
+      Wear your hours. Make them count.
+    </p>
+    <a class="primary-button" href="#shop">EXPLORE DROP 001 ↗</a>
+  </div>
+  <div class="hero-art">
+    <div class="shirt"></div>
+    <div class="hero-tag">DROP 001 — LIMITED RELEASE</div>
+  </div>
+</section>
+
+<div class="marquee">
+  HAPPY HRS ✳ GOOD TIMES ✳ NO RULES ✳ OWN YOUR HOURS ✳ HAPPY HRS ✳
+</div>
+
+<section class="section" id="shop">
+  <div class="section-heading">
+    <div>
+      <p>THE FIRST COLLECTION</p>
+      <h2>DROP 001.</h2>
+    </div>
+    <p>01 — COLLECTION</p>
+  </div>
+
+  <div class="products" id="products"></div>
+</section>
+
+<section class="about" id="about">
+  <h2>TIME IS<br>YOURS.</h2>
+  <p>
+    HAPPY HRS is an independent streetwear project built around
+    self-expression, simplicity and the moments that matter.
+    <br><br>
+    We believe clothing should say something without trying too hard.
+    This is only the beginning.
+    <br><br>
+    <strong>Welcome to your HAPPY HRS.</strong>
+  </p>
+</section>
+
+<section class="newsletter" id="contact">
+  <p>STAY IN THE LOOP</p>
+  <h2>DON'T MISS THE DROP.</h2>
+  <p>Follow us for new releases, behind-the-scenes and updates.</p>
+  <a class="primary-button" href="https://www.tiktok.com/" target="_blank">
+    FOLLOW HAPPY HRS ↗
+  </a>
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">HAPPY HRS.</div>
+      <p>INDEPENDENT STREETWEAR. MADE WITH INTENTION.</p>
+    </div>
+    <div>
+      <a href="#shop">SHOP</a><br><br>
+      <a href="#about">OUR STORY</a><br><br>
+      <a href="#contact">CONTACT</a>
+    </div>
+    <p>© <span id="year"></span> HAPPY HRS. ALL RIGHTS RESERVED.</p>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+<aside class="cart" id="cart">
+  <div class="cart-head">
+    <h2>YOUR BAG.</h2>
+    <button class="close" onclick="closeCart()">×</button>
+  </div>
+  <div id="cart-items"></div>
+  <div class="cart-total">
+    <span>TOTAL</span>
+    <span id="cart-total">0 TND</span>
+  </div>
+  <button class="checkout" onclick="checkout()">
+    ORDER VIA WHATSAPP ↗
+  </button>
+  <p style="font-size:10px;color:#777;margin-top:15px;line-height:1.6">
+    Delivery costs and payment details will be confirmed with you
+    through WhatsApp.
+  </p>
+</aside>
+
+<script>
+const WHATSAPP_NUMBER = "21600000000"; // REPLACE WITH YOUR NUMBER
+
+const products = [
+  {
+    id: 1,
+    name: "THE SMILEY TEE",
+    description: "DROP 001 — BLACK",
+    price: 89,
+    color: "dark",
+    shirt: "",
+    tag: "BEST SELLER"
+  },
+  {
+    id: 2,
+    name: "THE SMILEY TEE",
+    description: "DROP 001 — WHITE",
+    price: 89,
+    color: "",
+    shirt: "white",
+    tag: "DROP 001"
+  },
+  {
+    id: 3,
+    name: "THE DAILY TEE",
+    description: "DROP 001 — GREY",
+    price: 89,
+    color: "grey",
+    shirt: "grey-shirt",
+    tag: "NEW"
+  }
+];
+
+let cart = JSON.parse(localStorage.getItem("happyhrs-cart") || "[]");
+
+function saveCart() {
+  localStorage.setItem("happyhrs-cart", JSON.stringify(cart));
+  renderCart();
+}
+
+function renderProducts() {
+  const container = document.getElementById("products");
+
+  container.innerHTML = products.map(product => `
+    <article>
+      <div class="product-image ${product.color}">
+        <div class="product-label">${product.tag}</div>
+        <div class="product-shirt ${product.shirt}">
+          <span>HAPPY</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div>
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+        </div>
+        <div class="price">${product.price} TND</div>
+      </div>
+      <button class="add-button" onclick="addToCart(${product.id})">
+        ADD TO BAG +
+      </button>
+    </article>
+  `).join("");
+}
+
+function addToCart(id) {
+  const existing = cart.find(item => item.id === id);
+
+  if (existing) {
+    existing.quantity++;
+  } else {
+    cart.push({id, quantity: 1, size: "M"});
+  }
+
+  saveCart();
+  openCart();
+}
+
+function renderCart() {
+  const container = document.getElementById("cart-items");
+  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  document.getElementById("cart-count").textContent = count;
+
+  if (cart.length === 0) {
+    container.innerHTML = '<div class="empty">YOUR BAG IS EMPTY.<br><br>DISCOVER THE COLLECTION.</div>';
+    document.getElementById("cart-total").textContent = "0 TND";
+    return;
+  }
+
+  let total = 0;
+
+  container.innerHTML = cart.map(item => {
+    const product = products.find(p => p.id === item.id);
+    total += product.price * item.quantity;
+
+    return `
+      <div class="cart-item">
+        <div>
+          <strong>${product.name}</strong><br>
+          <span style="color:#777">${product.description}</span><br>
+          <select onchange="changeSize(${item.id},this.value)">
+            ${["S","M","L","XL","XXL"].map(size =>
+              `<option value="${size}" ${item.size === size ? "selected" : ""}>${size}</option>`
+            ).join("")}
+          </select>
+          <br>
+          <button class="remove" onclick="removeItem(${item.id})">REMOVE</button>
+        </div>
+        <div style="text-align:right">
+          ${product.price * item.quantity} TND<br>
+          <span style="color:#777">Qty: ${item.quantity}</span>
+          <br><br>
+          <button class="remove" onclick="updateQuantity(${item.id},-1)">−</button>
+          <button class="remove" onclick="updateQuantity(${item.id},1)">+</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("cart-total").textContent = total + " TND";
+}
+
+function updateQuantity(id, change) {
+  const item = cart.find(item => item.id === id);
+  if (!item) return;
+
+  item.quantity += change;
+  if (item.quantity <= 0) {
+    cart = cart.filter(item => item.id !== id);
+  }
+  saveCart();
+}
+
+function changeSize(id, size) {
+  const item = cart.find(item => item.id === id);
+  if (item) {
+    item.size = size;
+    saveCart();
+  }
+}
+
+function removeItem(id) {
+  cart = cart.filter(item => item.id !== id);
+  saveCart();
+}
+
+function openCart() {
+  document.getElementById("cart").classList.add("open");
+  document.getElementById("overlay").classList.add("open");
+}
+
+function closeCart() {
+  document.getElementById("cart").classList.remove("open");
+  document.getElementById("overlay").classList.remove("open");
+}
+
+function checkout() {
+  if (cart.length === 0) {
+    alert("Your bag is empty!");
+    return;
+  }
+
+  if (WHATSAPP_NUMBER === "21600000000") {
+    alert("Please add your WhatsApp number in the website code first.");
+    return;
+  }
+
+  let total = 0;
+  let message = "Hello HAPPY HRS! I'd like to place an order:\n\n";
+
+  cart.forEach(item => {
+    const product = products.find(p => p.id === item.id);
+    const subtotal = product.price * item.quantity;
+    total += subtotal;
+
+    message +=
+      product.name + " (" + product.description + ")\n" +
+      "Size: " + item.size + "\n" +
+      "Quantity: " + item.quantity + "\n" +
+      "Subtotal: " + subtotal + " TND\n\n";
+  });
+
+  message += "TOTAL: " + total + " TND\n\n";
+  message += "Please confirm availability and delivery details.";
+
+  const url =
+    "https://wa.me/" + WHATSAPP_NUMBER +
+    "?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank");
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
